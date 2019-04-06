@@ -1,0 +1,8 @@
+src/index.html has all the index stuff
+
+src/js/add.js has the Web3.js data
+
+contracts/Election.sol has the smart contract
+
+build/contracts/Election.json has that massive JSON file which has all the data. But you probably won't need it as there are getters in place for all the things needed in the smart contract itself.
+
