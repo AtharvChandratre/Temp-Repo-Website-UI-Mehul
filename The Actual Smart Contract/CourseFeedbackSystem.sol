@@ -62,14 +62,20 @@ contract CourseFeedback{
     studentsCount=numberOfStudents;
   }
 
+  function checkAdmin(address _addr) public view returns (bool){
+  	if(_addr==admin)
+  	{
+  		return true;
+  	}
+  	else
+  	{
+  		return false;
+  	}
+  }
+
 
   //add students
-  function addStudent (uint _studentid,string memory _studentname, address pk) public {
-	if(msg.sender!=admin)
-	{
-		revert("You are not an admin");
-		
-	}
+  function addStudent (uint _studentid,string memory _studentname, address pk) onlyAdmin public{
     //making a new student struct
     studentsList[pk]=Student(_studentid,_studentname,true);
     //increase numberOfVotedStudents
@@ -121,11 +127,11 @@ contract CourseFeedback{
     return studentsCount;
   }
   
-  function returnTotalFeedbackQ1() public returns(uint) {
+  function returnTotalFeedbackQ1() public view returns(uint) {
   	return totalQ1;
   }
 
-  function returnTotalFeedbackQ2() public returns (uint) {
+  function returnTotalFeedbackQ2() public view returns (uint) {
   	return totalQ2;
   }
 
